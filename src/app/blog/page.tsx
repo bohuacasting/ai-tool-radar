@@ -7,6 +7,11 @@ export const metadata = {
 };
 
 export default function BlogPage() {
+  // Sort posts by date (newest first)
+  const sortedPosts = [...posts].sort((a, b) => 
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="mb-12">
@@ -19,7 +24,7 @@ export default function BlogPage() {
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post, index) => (
+        {sortedPosts.map((post, index) => (
           <BlogCard key={index} {...post} />
         ))}
       </div>
